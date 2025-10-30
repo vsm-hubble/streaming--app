@@ -1,181 +1,65 @@
-# streaming--app
-financial research
-# Financial Streaming Agent Dashboard
+Building a Smarter Financial Researcher: Unveiling the Multi-Agent System Architecture
 
-A real-time financial analysis platform powered by Google's Agent Development Kit (ADK) and Gemini models. This application provides portfolio managers with comprehensive morning briefs, market data, and stock analysis through a streaming WebSocket interface.
+Veibha Subramaniam
 
-## Features
-
-- 🔴 **Real-time Streaming Responses** - WebSocket-based bidirectional communication
-- 📊 **Comprehensive Market Data** - World indices, commodities, market movers
-- 📈 **Stock Analysis** - Detailed financial metrics and company data
-- 🌍 **Global Market Coverage** - Americas, Europe, and Asia markets
-- 🤖 **Multi-Agent Architecture** - Specialized agents for different financial domains
-
-## Architecture
-
-### Agent System
-
-The application uses a hierarchical agent structure:
-
-- **Root Agent (`finagent`)** - Orchestrates all sub-agents and compiles responses
-- **Market Brief Agent** - Generates market tone and key developments
-- **World Indices Agent** - Fetches global market indices data
-- **Commodities Agent** - Retrieves commodity prices (Gold, Silver, Copper, Oil, Gas)
-- **Market Movers Agent** - Top 100 large-cap stock movers from TradingView
-
-
-### Technology Stack
-
-**Backend:**
-- Python 3.8+
-- FastAPI - Web framework
-- Google ADK - Agent orchestration
-- Google Gemini - AI models
-- WebSockets - Real-time communication
-
-**Frontend:**
-- HTML5
-- Vanilla JavaScript
-- TailwindCSS - Styling
-
-**Data Sources:**
-- Yahoo Finance API (yfinance)
-- TradingView (web scraping)
-- Polygon.io (Treasury yields)
-- Google Search (via ADK)
-
-## Project Structure
-
-```
-streaming_app/
-├── main.py                    # FastAPI server with WebSocket endpoints
-├── .env                       # Environment variables (API keys)
-├── requirements.txt           # Python dependencies
-├── static/
-│   ├── index.html            # Web interface
-│   └── js/
-│       └── app.js            # WebSocket client
-└── finagent/                 # Agent package
-    ├── __init__.py
-    ├── agent.py              # Agent definitions
-    ├── yahoo_stock_price.py  # Stock data fetcher
-    ├── tv_market_movers_scraper.py  # TradingView scraper
-    ├── yahoo_comm.py         # Commodity data fetcher
-    ├── yahoo_indices.py      # World indices scraper
-    └── polygon_Treasury_yields.py   # Treasury yields API
-```
-
-## Installation
-
-### Prerequisites
-
-- Python 3.8 or higher
-- Google Cloud account or Google AI Studio API key
-- pip package manager
-
-### Setup Steps
-
-1. **Clone the repository**
-```bash
-git clone <your-repo-url>
-cd streaming_app
-```
-
-2. **Create a virtual environment**
-```bash
-python -m venv .venv
-
-# Activate on macOS/Linux:
-source .venv/bin/activate
-
-# Activate on Windows:
-.venv\Scripts\activate
-```
-
-3. **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-4. **Configure environment variables**
-
-Create a `.env` file in the `streaming_app` directory:
-
-**Option 1: Using Google AI Studio (Recommended for development)**
-```env
-GOOGLE_API_KEY=your_api_key_here
-```
-
-Get your API key from: https://aistudio.google.com/apikey
-
-**Option 2: Using Google Cloud Vertex AI**
-```env
-GOOGLE_CLOUD_PROJECT=your_project_id
-GOOGLE_CLOUD_LOCATION=us-central1
-```
-
-And authenticate:
-```bash
-gcloud auth application-default login
-```
-
-5. **Optional: Configure Polygon.io API key** (for Treasury yields)
-
-Add to `.env`:
-```env
-POLYGON_API_KEY=your_polygon_api_key_here
-```
-
-Get a free API key from: https://polygon.io
-
-## Running the Application
-
-### Local Development
-
-```bash
-cd streaming_app
-python main.py
-```
-
-The server will start on `http://localhost:8080`
-
-Open your browser and navigate to: `http://localhost:8080`
-
-### Google Cloud Shell
-
-If running in Google Cloud Shell:
-
-1. Start the server:
-```bash
-python main.py
-```
-
-2. Click the **Web Preview** button in Cloud Shell
-3. Select **Preview on port 8080**
-
-The application will open in a new tab with WebSocket support over HTTPS.
+Follow
+3 min read
+·
+Oct 12, 2025
+50
 
 
 
-## License
 
-[Your License Here]
+The world of finance moves at the speed of information. Analysts and investors are constantly sifting through mountains of data — stock prices, commodity futures, global indices, and market news — just to form a single, coherent market view. This complexity makes traditional, manual research slow, fragmented, and prone to oversight.
 
-## Acknowledgments
+The solution? An intelligent, autonomous, and parallelized multi-agent system.
 
-- Google Agent Development Kit (ADK) team
-- Yahoo Finance for market data
-- TradingView for market movers data
-- Polygon.io for Treasury yields API
+This post dives into the architecture of our Multi-Agent Financial Research Agent (finagent), a robust system designed to automate comprehensive market data gathering. Built on the principle of distributed intelligence, it uses specialized agents and dedicated tools to fetch diverse data concurrently, providing a holistic and timely picture of the financial landscape.
 
-## Support
+The Architecture: A Financial Research Agent
 
-For issues, questions, or contributions:
-- Open an issue on GitHub
-- Check the [ADK documentation](https://google.github.io/adk-docs/)
-- Review [Gemini API docs](https://ai.google.dev/docs)
+At the heart of the system is the finagent, the orchestrator responsible for initiating a request for a comprehensive market overview. It delegates the heavy lifting to the parallel_research_agent, a key component that executes multiple, independent data collection tasks simultaneously. This parallel structure is what dramatically reduces research time from hours to minutes.
 
----
+The architecture used:
 
-**⚠️ Disclaimer:** This application is for educational and informational purposes only. Not financial advice. Always verify data from official sources before making investment decisions.
+The top-level finagent connects to the parallel_research_agent.
+The parallel_research_agent then fans out to several specialized sub-agents, ensuring all necessary data is fetched concurrently.
+Press enter or click to view image in full size
+
+The importance of this design lies in its modularity and speed. No single agent is responsible for everything; they each have a narrow, expert focus, making the system highly reliable and easy to maintain or expand.
+
+Diving Deeper: The Specialized Agents and Their Tools
+
+The parallel_research_agent manages six core information-gathering functions, distributed across specialized agents. Each agent is paired with a specific tool (function) to ensure accurate and targeted data retrieval.
+
+1. The Market Data Specialists
+
+Get Veibha Subramaniam’s stories in your inbox
+Join Medium for free to get updates from this writer.
+
+Enter your email
+Subscribe
+These agents focus on the core numerical movements of the market:
+
+Press enter or click to view image in full size
+
+The Agents
+2. The Contextual Cluster: Building the Market Brief
+
+For a research report to be truly valuable, it needs narrative context. The final major component is a nested parallel agent, market_brief_cluster_parallel_research_agent, which handles the gathering of qualitative information:
+
+data_grounding_agent: Responsible for processing specific URLs to extract context and background information, ensuring the system can analyze provided sources.
+information_gathering_agent: The general-purpose research arm, sifting through news and web sources to provide up-to-date, relevant textual information for the final market brief.
+This two-pronged approach — simultaneously fetching hard numbers and narrative context — is what makes the output of the financial research agent comprehensive.
+
+Why Multi-Agent? The Power of Parallelism
+
+The agentic design provides several critical advantages over a monolithic program:
+
+Speed: By using the Parallel Agent structure, the system fetches all four core data types (prices, movers, commodities, indices) and initiates the context gathering simultaneously. It doesn’t have to wait for one step to finish before starting the next.
+Scalability: Adding a new source of data — say, a crypto_data_agent — is as simple as adding a new node to the parallel_research_agent. It requires minimal changes to the other existing agents.
+Reliability: If one tool or agent fails (e.g., the commodities_data_agent can’t reach its API), the rest of the research process continues uninterrupted, allowing the finagent to flag the single failed component while delivering the majority of the research.
+This Multi-Agent Financial Research System represents a significant step towards truly autonomous and comprehensive data collection in finance, ensuring that every analysis is built on a complete, timely, and multi-faceted data set.
+
+Tech Stack used : Vertex AI, MCP, Python
