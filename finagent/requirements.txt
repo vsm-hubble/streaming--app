@@ -1,0 +1,6 @@
+google-adk
+beautifulsoup4
+pandas
+webdriver-manager
+polygon-api-client
+yfinance
